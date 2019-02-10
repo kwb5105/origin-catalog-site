@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row banner main">
+    <div class="kyleBannerText">UNAUTHORIZED!</div>
+    <div class="col-md-11 padding-none"></div>
+</div>
+<h1>You are not authorized to edit this item. Please create your own item in order to edit.</h1>
+{% for owner in categoryOwner %}
+<div>
+    <div class="col-md-12 catalog-list">
+        <h3>The Owner of this Record is: {{owner.name}}</h3>
+    </div>
+</div>
+{% endfor %}
+<div class="row padding-top padding-bottom">
+    <div class="col-md-12"></div>
+</div>
+<script>
+    function myFunction() {
+        alert('You are not authorized to edit this item. Please create your own item in order to edit.');
+        setTimeout(function () {
+            window.location.href = "/catalog";
+        }, 3000);
+    }
+</script>
+
+<body onload='myFunction()'>
+
+    {% endblock %}

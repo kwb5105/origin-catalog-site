@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="row banner main">
+    <div class="kyleBannerText">{{ catalog.name }}</div>
+    <div class="col-md-11 padding-none"></div>
+</div>
+
+<div class="row padding-top padding-bottom">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 padding-none">
+        <div class="col-md-2">
+            <a href="{{url_for('newCatalogItem', category_id = catalog.id) }}">
+                <button class="btn btn-default" id="new-category">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Item
+                </button>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="{{url_for('categoryListJSON', category_id = catalog.id) }}">
+                <button class="btn btn-default" id="json-category-list">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>JSON
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<div>
+
+    {% for i in items %}
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 catalog-list">
+            <a href='{{url_for('showCatalogItem', category_id = catalog.id, catalog_id = i.id) }}'>
+                <h3>{{i.name}}</h3>
+                <h3>{{i.description}}</h3>
+        </div>
+        {%if 'username' in session %}
+        <a href='{{url_for('editCatalogItem', category_id = catalog.id, catalog_id = i.id) }}'>
+            <button class="btn btn-default" id="edit-item">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit
+            </button>
+        </a>
+        <a href='{{url_for('deleteCatalogItem', category_id = catalog.id, catalog_id = i.id) }}'>
+            <button class="btn btn-default delete" id="delete-item">
+                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete
+            </button>
+        </a>
+        {% endif %}
+
+        <div class="col-md-1"></div>
+    </div>
+    {% endfor %}
+
+</div>
+<div class="row padding-top padding-bottom"></div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row banner main">
+    <div class="kyleBannerText">Catalog Item</div>
+    <div class="col-md-11 padding-none"></div>
+</div>
+<div>
+    <div class="col-md-12 catalog-list">
+        <h1>{{item.name}}</h1>
+    </div>
+    <div class="col-md-12 catalog-list">
+        <h3>{{item.description}}</h3>
+    </div>
+    {%if 'username' in session %}
+    <a href='{{url_for('editCatalogItem', category_id = catalog_id, catalog_id = item.id) }}'>
+        <button class="btn btn-default" id="edit-item">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit
+        </button>
+    </a>
+    <a href='{{url_for('deleteCatalogItem', category_id = catalog_id, catalog_id = item.id) }}'>
+        <button class="btn btn-default delete" id="delete-item">
+            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete
+        </button>
+    </a>
+    {% endif %}
+    <div class="col-md-2">
+        <a href="{{url_for('catalogItemJSON', category_id = catalog_id, catalog_id = item.id) }}">
+            <button class="btn btn-default" id="json-item-category">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>JSON
+            </button>
+        </a>
+    </div>
+
+</div>
+<div class="row padding-top padding-bottom">
+    <div class="col-md-12"></div>
+</div>
+{% endblock %}

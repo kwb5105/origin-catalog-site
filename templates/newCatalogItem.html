@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row banner main">
+    <div class="kyleBannerText">New Catalog Item</div>
+    <div class="col-md-11 padding-none"></div>
+</div>
+
+
+<form action="#" method='post'>
+
+    <p>Name:</p>
+    <input type='text' size='80' name='name' placeholder='Enter name of item'>
+    <p>Description:</p>
+    <textarea rows="4" cols="80" name='description' placeholder='Enter Item description'></textarea>
+    <p>Category :</p>
+    <select name='category'>
+        {% for category in categoryList %}
+        <option value="{{category.id}}">{{category.name}}</option>
+        {% endfor %}
+    </select>
+    </br>
+
+
+    <input type='submit' value='Create'>
+
+</form>
+<a href='{{url_for('showCatalog')}}'> Cancel </a>
+{% endblock %}

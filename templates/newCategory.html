@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row banner main">
+    <div class="kyleBannerText">New Category</div>
+    <div class="col-md-11 padding-none"></div>
+</div>
+<div>
+    <div>
+        <form action="#" method="post">
+            <div>
+                <div class="padding-top"></div>
+                <label for="name">Name:</label>
+                <input type="text" maxlength="100" name="name">
+                <button type="submit" id="submit" type="submit">
+                    <span aria-hidden="true"></span>Create</button>
+            </div>
+        </form>
+        <a href='{{url_for('showCatalog')}}'> Cancel </a>
+    </div>
+</div>
+{% endblock %}
